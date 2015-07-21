@@ -30,8 +30,8 @@ class GamesController < ApplicationController
     @game.winner = Player.find_by(name: params[:winner_name])
     @game.completed = true
     if @game.save
-      flash[:notice] = "Congratulations, #{@game.winner.name}!"
-      redirect_to games_path
+      winner_message = "Congratulations, #{@game.winner.name}!"
+      render json: {message: winner_message}.to_json
     end
   end
 

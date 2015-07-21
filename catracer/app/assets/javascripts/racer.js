@@ -25,10 +25,11 @@ $(document).ready( function(){
       $.ajax ({
         url: '/games/' + $('.racetrack').data().gameId,
         method: 'put',
-        data: {winner_name: winner.playerName}
+        data: {winner_name: winner.name},
+        dataType: 'json'
       })
       .done (function(response){
-        console.log(response, "success!")
+        $('.racetrack').append(response.message);
       })
       .fail (function(error){
         console.log(error, "errorrrr!!!")
