@@ -1,1 +1,5 @@
-new.erb
+<%= form_tag games_path do |f| %>
+  <%= text_field_tag :player1, nil, placeholder: 'Player 1 Name' %>
+  <%= text_field_tag :player2, nil, placeholder: 'Player 2 Name' %>
+  <%= submit_tag "Play game!" %>
+<% end %>
