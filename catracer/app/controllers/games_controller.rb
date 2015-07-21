@@ -29,7 +29,7 @@ class GamesController < ApplicationController
     @game = Game.find_by(id: params[:id])
     @game.winner = Player.find_by(name: params[:winner_name])
     @game.completed = true
-    if @game.save
+    if @game.save && request.xhr?
       winner_message = "Congratulations, #{@game.winner.name}!"
       render json: {message: winner_message}.to_json
     end
