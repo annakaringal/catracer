@@ -24,16 +24,12 @@ NUM_GAMES.times do |i|
   end
 
   completed = [true, false].sample
-  if completed
-    winner_id = [player1_id, player2_id].sample
-  end
-
   game = Game.create( player1_id: player1_id,
                       player2_id: player2_id,
                       completed: completed )
 
   if game.completed
-    game.winner_id = winner_id
+    game.winner_id = [player1_id, player2_id].sample
   end
 
 end
