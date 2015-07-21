@@ -1,12 +1,15 @@
 $(document).ready( function(){
   var p1 = {
-    name: 'one',
+    className: '.one',
     pos: 1
   }, p2 = {
-    name: 'two',
+    className: '.two',
     pos: 1
   }
-  finishPos = 10;
+  p1.name = $(p1.className).data().playerName
+  p2.name = $(p2.className).data().playerName
+  var gameId = $('.racetrack').data().gameId;
+  finishPos = $('.one > .pos').length
   currentPlayer = null;
 
   $(document).on('keyup', function(event) {
@@ -19,14 +22,14 @@ $(document).ready( function(){
         updatePlayerPosition(currentPlayer);
     }
     else {
-        $('.' + winner.name).addClass('winner');
+      $(winner.className).addClass('winner');
     }
   });
 
 });
 
 var updatePlayerPosition = function(player){
-  var currentPos = $('.' + player.name + ' > .active');
+  var currentPos = $(player.className + ' > .active');
   currentPos.removeClass('active');
   currentPos.next().addClass('active');
 }

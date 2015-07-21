@@ -1,5 +1,5 @@
-<div class="racetrack">
-    <div class="player one">
+<div class="racetrack" data-game-id="<%= @game.id %>">
+    <div class="player one" data-player-name="<%= @player1.name %>">
         <div class="pos active">
         </div>
         <% 9.times do %>
@@ -7,7 +7,7 @@
             </div>
         <% end %>
     </div>
-    <div class="player two">
+    <div class="player two" data-player-name="<%= @player2.name %>">
         <div class="pos active">
         </div>
         <% 9.times do %>
