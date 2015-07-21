@@ -8,7 +8,6 @@ $(document).ready( function(){
   }
   p1.name = $(p1.className).data().playerName
   p2.name = $(p2.className).data().playerName
-  var gameId = $('.racetrack').data().gameId;
   finishPos = $('.one > .pos').length
   currentPlayer = null;
 
@@ -23,6 +22,18 @@ $(document).ready( function(){
     }
     else {
       $(winner.className).addClass('winner');
+      $.ajax ({
+        url: '/games/' + $('.racetrack').data().gameId,
+        method: 'put',
+        data: {winner_name: winner.playerName}
+      })
+      .done (function(response){
+        console.log(response, "success!")
+      })
+      .fail (function(error){
+        console.log(error, "errorrrr!!!")
+      })
+
     }
   });
 
