@@ -1,4 +1,4 @@
-class GamesController < ActionController::Base
+class GamesController < ApplicationController
 
   def index
   end
@@ -12,7 +12,7 @@ class GamesController < ActionController::Base
     @game.player1 = Player.find_or_create_by(name: params[:player1_name])
     @game.player2 = Player.find_or_create_by(name: params[:player2_name])
     if @game.save
-      redirect_to @game
+      redirect_to game_path(@game)
     else
       flash[:error] = "There was an error creating your game!"
       redirect_to new_game_path
@@ -21,11 +21,12 @@ class GamesController < ActionController::Base
 
   def show
     @game = Game.find_by(id: params[:id])
-    @player1 = game.player1
-    @player2 = game.player2
+    @player1 = @game.player1
+    @player2 = @game.player2
   end
 
   def update
+    @game = Game.find_by(id: params[:id])
   end
 
 end
